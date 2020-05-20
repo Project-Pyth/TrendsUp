@@ -1,0 +1,7 @@
+1. Run the "python manage.py collectstatic" command first
+
+
+2. Provide your "Email-Id" along with the "Password" in settings.py file for reset password functionality.
+
+
+3. Provide your "SOCIAL_AUTH_GOOGLE_OAUTH2_KEY" and "SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET" for google sign-in fucntionality.

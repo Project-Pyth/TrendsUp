@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+{% block content %}
+    {% block login %}
+    {% endblock login %}
+    {% block nav %}
+    {% endblock nav %}
+    {% block search %}
+    {% endblock search %}
+    <style>
+        .aclk {
+            color: orange;
+            text-decoration: none;
+        }
+
+        .aclk:hover {
+            color: green;
+            text-decoration: none;
+        }
+        </style>
+
+
+    <div id="wrapper">
+
+
+        <div class="page-title lb single-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <h2><i class="fa fa-sign-in bg-orange"></i> Login <small class="hidden-xs-down hidden-sm-down">There Are Advances Being Made In Science and Technology Everyday. </small></h2>
+                    </div><!-- end col -->
+                    <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+
+                        </ol>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end page-title -->
+
+        <section class="section wb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="page-wrapper">
+                            <div class="row">
+
+                                <div class="col-lg-7">
+
+                                    <form class="form-wrapper" method="post">{% csrf_token %}
+                                        <p><b>Not a  Member? <a class="aclk" href="{% url 'account:register' %}">Register</a></b></p><br>
+                                        <input type="text" class="form-control" name="username" placeholder="Email"
+                                               autocomplete="off" required>
+                                        <input type="password" class="form-control" name="password"
+                                               placeholder="Password" required>
+                                        <p><b><a class="aclk" href="{% url 'password_reset' %}">Forgot Password</a></b></p>
+                                        {% for message in messages %}
+                                            {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                                                <p style="color: red;">{{ message }}</p>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        <a href="{% url 'trendsup:index' %}">
+                                            <button type="submit" class="btn btn-primary">Login
+                                            </button></a><br><br>
+                                    <a class="oauth-container btn darken-4 white black-text"
+                                           href="{% url 'social:begin' 'google-oauth2' %}"
+                                           style="text-transform:none;">
+                                            Sign in with Google</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- end page-wrapper -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+
+
+        <div class="dmtop">Scroll to Top</div>
+
+    </div><!-- end wrapper -->
+{% endblock content %}

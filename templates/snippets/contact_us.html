@@ -1,0 +1,121 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    {% block search %}
+    {% endblock search %}
+    {% block nav %}{% endblock nav %}
+
+    <style type="text/css">
+        #image {
+            width: 200px;
+            height: 200px;
+            margin-bottom:15%;
+        }
+    #info{
+        margin-top:20%;
+    }
+    p{
+        text-align: justify;
+    }
+    </style>
+
+
+    <div id="wrapper">
+
+        <div class="page-title lb single-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <h2><i class="fa fa-envelope-open-o bg-orange"></i> Contact us <small
+                                class="hidden-xs-down hidden-sm-down">We'd Love To Hear From You</small></h2>
+                    </div><!-- end col -->
+                    <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'trendsup:index' %}">Home</a></li>
+                            <li class="breadcrumb-item active">Contact</li>
+                        </ol>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end page-title -->
+
+        <section class="section wb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="page-wrapper">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <h4>Who we are</h4>
+                                    <p>TrendsUp is a website which allows users to be up-to-date with the latest trends in various fields..
+                                        User can browse through various categories and can read articles related to the selected category.
+                                    The system will be showcasing the latest trends in various fields.
+                                        The user can also share various articles to their Facebook. </p>
+
+                                    <h4>How we help?</h4>
+                                    <p>If you face any problem related to articles then you can contact us with our provided contact information.
+                                        You can call us and can also send email. We don't audio record any calls, but we might makes notes to help
+                                        us answer your query.We'll also monitor any email sent to us. You must ensure that any email you send is within the bounds of the law.
+                                    </p>
+
+
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="mini-box">
+                                                <img src="{% static 'images/ranjit.jpg' %}"
+                                                     class="img-fluid rounded-circle" id="image">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-6">
+                                            <div class="mini-box" id="info">
+                                                <b><i class="fa fa-unlock-alt"
+                                                                                 aria-hidden="true"></i></b><b>
+                                                    Name:</b> Ranjit Kaur<br>
+                                                <b><i class="fa fa-envelope"
+                                                                                 aria-hidden="true"></i></b><b>
+                                                    Email:</b> kaurr6444@gmail.com<br>
+                                                <b><i class="fa fa-mobile"
+                                                                                 aria-hidden="true"></i></b><b>
+                                                    Phone:</b> +919779054180<br>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            <div class="mini-box">
+                                                <img src="{% static 'images/sp.jpg' %}"
+                                                     class="img-fluid rounded-circle" id="image">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="mini-box" id="info">
+                                                <b><i class="fa fa-unlock-alt"
+                                                                                 aria-hidden="true"></i></b><b>
+                                                    Name:</b> Sarpreet<br>
+                                                <b><i class="fa fa-envelope"
+                                                                                 aria-hidden="true"></i></b><b>
+                                                    Email:</b> ssarpreet.786@gmail.com<br>
+                                                <b><i class="fa fa-mobile"
+                                                                                 aria-hidden="true"></i></b><b>
+                                                    Phone:</b> +919878610299<br>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                            </div><!-- end page-wrapper -->
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+                    </div><!-- end container -->
+        </section>
+
+
+        <div class="dmtop">Scroll to Top</div>
+
+    </div><!-- end wrapper -->
+
+
+{% endblock content %}

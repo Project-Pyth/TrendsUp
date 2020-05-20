@@ -1,0 +1,86 @@
+{#Pending Posts Template#}
+
+{% extends 'index.html' %}
+
+{% block search %}
+{% endblock search %}
+{% block content %}
+
+    <div id="wrapper">
+
+        <div class="page-title lb single-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <h2><i class="fa fa-star bg-orange"></i> Pending Posts</h2>
+                    </div><!-- end col -->
+                    <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'trendsup:index' %}">Home</a></li>
+                        </ol>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end page-title -->
+
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="page-wrapper">
+
+                            <hr class="invis1">
+
+                            <div class="blog-list clearfix">
+                                {% for post in posts %}
+                                    <div class="blog-box row">
+                                        <div class="col-md-4">
+                                            <div class="post-media">
+                                                <a href="{% url 'post:detail' post.slug %}" title="">
+                                                    <img src="{{ post.image.url }}" alt="" class="img-fluid">
+                                                    <div class="hovereffect"></div>
+                                                </a>
+                                            </div><!-- end media -->
+                                        </div><!-- end col -->
+
+                                        <div class="blog-meta big-meta col-md-8">
+                                            <h4><a href="{% url 'post:detail' post.slug %}"
+                                                   title="">{{ post.title }}</a></h4>
+                                            <p>{{ post.body|truncatechars:150|safe }}</p>
+                                            <small class="firstsmall"><a class="bg-orange"
+                                                                         href="{% url 'post:category' post.category.pk %}"
+                                                                         title="">{{ post.category }}</a></small>
+                                            <small><a href="#" title="">{{ post.date_posted }}</a></small>
+                                            <small><a href="#" title="">by {{ post.author }}</a></small>
+                                        </div><!-- end meta -->
+                                    </div><!-- end blog-box -->
+                                    <form method="post" action="{% url 'post:approve' post.pk %}">
+                                    {% csrf_token %}
+                                    <button class=" btn btn-lg btn-primary " type="submit" style="margin-top:5%;">Approve</button>
+                                    </form>
+                                    <hr class="invis">
+                                {% endfor %}
+
+                            </div><!-- end blog-list -->
+                        </div><!-- end page-wrapper -->
+
+                        <hr class="invis">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                {% include 'snippets/pagination.html' with posts=posts %}
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                    </div><!-- end col -->
+
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+
+        <div class="dmtop">Scroll to Top</div>
+
+    </div><!-- end wrapper -->
+
+
+{% endblock content %}

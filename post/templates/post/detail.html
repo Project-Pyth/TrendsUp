@@ -1,0 +1,270 @@
+{#Detailed Post Template#}
+
+{% extends 'index.html' %}
+{% load humanize %}
+{% load extras %}
+{% block search %}
+    {% if post.author == request.user or request.user.is_staff %}
+        <div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'post:edit' post.slug %}">Update Post</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'post:delete_post' post.slug %}" onclick="return confirm('Are You Sure You Want To Delete This Post')">Delete Post</a>
+            </li>
+        </div>
+    {% endif %}
+{% endblock search %}
+{% block content %}
+    <body>
+
+    <div id="wrapper">
+        <section class="section single-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="page-wrapper">
+                            <div class="blog-title-area text-center">
+                                <ol class="breadcrumb hidden-xs-down">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active">{{ post.title|safe }}</li>
+                                </ol>
+
+                                <span class="color-orange"><a href="{% url 'post:category' post.category.pk %}"
+                                                              title="">{{ post.category }}</a></span>
+
+                                <h3>{{ post.title|safe }}</h3>
+
+                                <div class="blog-meta big-meta">
+                                    <small><a href="#" title="">{{ post.date_posted }}</a></small>
+                                    <small><a href="{% url 'post:author' post.author.pk %}"
+                                              title="">by {{ post.author }}</a></small>
+                                </div><!-- end meta -->
+                                <div class="fb-like" data-href="http://127.0.0.1:8000/post/{{ post.slug }}"
+                                     data-width="1000" data-layout="button_count" data-action="like" data-size="large"
+                                     data-share="true"></div>
+
+                            </div><!-- end title -->
+
+                            <div class="single-post-media">
+                                <img src="{{ post.image.url }}" alt="" class="img-fluid">
+                            </div><!-- end media -->
+
+                            <div class="blog-content">
+                                <div class="pp">
+                                    {{ post.body|safe }}
+                                </div><!-- end pp -->
+                            </div><!-- end content -->
+
+                            <div class="fb-like" data-href="http://127.0.0.1:8000/post/{{ post.slug }}"
+                                 data-width="1000" data-layout="button_count" data-action="like" data-size="large"
+                                 data-share="true"></div>
+
+                            <hr class="invis1">
+
+                            <div class="custombox authorbox clearfix">
+                                <h4 class="small-title">About author</h4>
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                        <img src="{{ post.author.userprofile.image.url }}" alt=""
+                                             class="img-fluid rounded-circle">
+                                    </div><!-- end col -->
+
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                        <h4>
+                                            <a href="{% url 'post:author' post.author.pk %}">{{ post.author.username }}</a>
+                                        </h4>
+                                        <p>{{ post.author.userprofile.description }}</p>
+                                    </div><!-- end col -->
+                                </div><!-- end row -->
+                            </div><!-- end author-box -->
+
+                            <hr class="invis1">
+
+                            <div class="custombox clearfix">
+                                <h4 class="small-title">You may also like</h4>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="blog-box">
+                                            <div class="post-media">
+                                                <a href="{% url 'post:detail' post1.slug %}" title="">
+                                                    <img height="50%" src="{{ post1.image.url }}" alt=""
+                                                         class="img-fluid">
+                                                    <div class="hovereffect">
+                                                        <span class=""></span>
+                                                    </div><!-- end hover -->
+                                                </a>
+                                            </div><!-- end media -->
+                                            <div class="blog-meta">
+                                                <h4><a href="{% url 'post:detail' post1.slug %}"
+                                                       title="">{{ post1.title }}</a></h4>
+                                                <small><a href="#" title="">{{ post1.category }}</a></small>
+                                                <small><a href="#" title="">{{ post1.date_posted }}</a></small>
+                                            </div><!-- end meta -->
+                                        </div><!-- end blog-box -->
+                                    </div><!-- end col -->
+
+                                    <div class="col-lg-6">
+                                        <div class="blog-box">
+                                            <div class="post-media">
+                                                <a href="{% url 'post:detail' post2.slug %}" title="">
+                                                    <img height="50%" src="{{ post2.image.url }}" alt=""
+                                                         class="img-fluid">
+                                                    <div class="hovereffect">
+                                                        <span class=""></span>
+                                                    </div><!-- end hover -->
+                                                </a>
+                                            </div><!-- end media -->
+                                            <div class="blog-meta">
+                                                <h4><a href="{% url 'post:detail' post2.slug %}"
+                                                       title="">{{ post2.title }}</a></h4>
+                                                <small><a href="#" title="">{{ post2.category }}</a></small>
+                                                <small><a href="#" title="">{{ post2.date_posted }}</a></small>
+                                            </div><!-- end meta -->
+                                        </div><!-- end blog-box -->
+                                    </div><!-- end col -->
+                                </div><!-- end row -->
+                            </div><!-- end custom-box -->
+
+                            <hr class="invis1">
+
+                            <div class="custombox clearfix">
+                                <h4 class="small-title">{{ comments.count }} Comments </h4>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="comments-list">
+                                            {% for comment in comments %}
+                                                <div class="media">
+                                                    <a class="media-left" href="#">
+                                                        <img src="{{ comment.user.userprofile.image.url }}" alt=""
+                                                             class="rounded-circle">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading user_name">{{ comment.user.username }}<small>{{ comment.timestamp|naturaltime }}</small>
+                                                        </h4>
+                                                        <p>{{ comment.comment }}</p>
+                                                        <div class="reply mx-0">
+                                                            <button class="btn btn-primary btn-sm" type="button"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#replyBox{{ comment.pk }}"
+                                                                    aria-expanded="False"
+                                                                    aria-controls="replyBox{{ comment.pk }}">Reply
+                                                            </button>
+                                                            <button class="btn btn-primary btn-sm" type="button"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#replyView{{ comment.pk }}"
+                                                                    aria-expanded="False"
+                                                                    aria-controls="replyView{{ comment.pk }}">View/Hide
+                                                                Replies
+                                                            </button>
+                                                            <div class="collapse" id="replyBox{{ comment.pk }}">
+                                                                <div class="card card-body my-2">
+                                                                    <form class="form-wrapper"
+                                                                          action="{% url 'post:postComment' %}"
+                                                                          method="post">
+                                                                        {% csrf_token %}
+                                                                        <label for="comment">Post a Reply</label>
+                                                                        <textarea class="form-control" name="comment"
+                                                                                  placeholder="Write Your comment..."></textarea>
+                                                                        <input type="hidden" name="parentpk"
+                                                                               value="{{ comment.pk }}">
+                                                                        <input type="hidden" name="postpk"
+                                                                               value="{{ post.pk }}">
+                                                                        <button type="submit" class="btn btn-primary">
+                                                                            Submit Reply
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body my-2 mx-3"
+                                                                 id="replyView{{ comment.pk }}">
+                                                                {% for reply in replydict|get_val:comment.pk %}
+                                                                    <div style="margin-bottom: 0.005%">
+                                                                        <a class="media-left" href="#">
+                                                                            <img src="{{ reply.user.userprofile.image.url }}"
+                                                                                 alt=""
+                                                                                 style="width:7%; border-radius: 50%;">
+                                                                        </a>
+                                                                        {{ reply.comment }}
+                                                                        by<span><b> {{ reply.user.username }}</b></span>
+                                                                    </div>
+                                                                    <br>
+
+
+                                                                {% endfor %}
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div><!-- end col -->
+                                </div><!-- end row -->
+                            </div><!-- end custom-box -->
+
+                            <hr class="invis1">
+
+                            <div class="custombox clearfix">
+                                <h4 class="small-title">Leave a Comment</h4>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form class="form-wrapper" action="{% url 'post:postComment' %}" method="post">
+                                            {% csrf_token %}
+                                            <textarea class="form-control" name="comment"
+                                                      placeholder="Write Your comment"></textarea>
+                                            <input type="hidden" name="postpk" value="{{ post.pk }}">
+                                            <input type="hidden" name="parentpk" value="">
+                                            <button type="submit" class="btn btn-primary">Submit Comment</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end page-wrapper -->
+                    </div><!-- end col -->
+
+
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sidebar">
+                            <div class="widget">
+                                <div class="banner-spot clearfix">
+                                    <div class="banner-img">
+                                        <img src="upload/banner_07.jpg" alt="" class="img-fluid">
+                                    </div><!-- end banner-img -->
+                                </div><!-- end banner -->
+                            </div><!-- end widget -->
+
+
+                            <div class="widget">
+                                <h2 class="widget-title">Other Posts</h2>
+                                <div class="blog-list-widget">
+                                    <div class="list-group">
+                                        {% for i in pp %}
+                                            <a href="{% url 'post:detail' i.slug %}"
+                                               class="list-group-item list-group-item-action flex-column align-items-start">
+                                                <div class="w-100 justify-content-between">
+                                                    <img src="{{ i.image.url }}" alt="" class="img-fluid float-left">
+                                                    <h5 class="mb-1">{{ i.title }}</h5>
+                                                    <small>{{ i.date_posted }}</small>
+                                                </div>
+                                            </a>
+                                        {% endfor %}
+                                    </div>
+                                </div><!-- end blog-list -->
+                            </div><!-- end widget -->
+
+
+
+                        </div><!-- end sidebar -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+        <div class="dmtop">Scroll to Top</div>
+
+    </div><!-- end wrapper -->
+
+
+    </body>
+{% endblock content %}

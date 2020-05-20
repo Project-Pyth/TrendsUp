@@ -1,0 +1,26 @@
+{#User Account Deletion Template#}
+
+{% extends 'index.html' %}
+{% block nav %}
+{% endblock nav %}
+{% block search %}
+{% endblock search %}
+{% block content %}
+
+    <div style="margin-top: 12%; margin-bottom: 8%;" class="container">
+        <div class="d-flex flex-lg-column">
+            <p class="m-auto" style="font-size: 30px">
+                {% if message %}
+                     {{ message }}
+                {% endif %}
+            </p><br>
+        <p class="m-auto">
+            You are no longer a user to login on this website.</p><br>
+            <p class="m-auto">
+                Changed Your Mind....
+                <a href="{% url 'account:register' %}"><strong>Create an account</strong></a>
+            </p>
+        </div>
+    </div>
+
+{% endblock content %}

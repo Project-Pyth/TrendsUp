@@ -1,0 +1,91 @@
+{% extends 'index.html' %}
+{% block content %}
+    {% block login %}
+    {% endblock login %}
+    {% block nav %}
+    {% endblock nav %}
+    {% block search %}
+    {% endblock search %}
+    <style>
+        .aclk {
+            color: orange;
+            text-decoration: none;
+        }
+
+        .aclk:hover {
+            color: green;
+            text-decoration: none;
+        }
+        </style>
+
+
+    <div id="wrapper">
+
+
+        <div class="page-title lb single-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <h2><i class="fa fa-registered bg-orange"></i> Register <small class="hidden-xs-down hidden-sm-down">Come Join the TrendsUp! Let's Set Up Your Account. </small></h2>
+                    </div><!-- end col -->
+                    <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+
+                        </ol>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end page-title -->
+
+        <section class="section wb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="page-wrapper">
+                            <div class="row">
+
+                                <div class="col-lg-7">
+
+                                    <form class="form-wrapper" method="post">{% csrf_token %}
+                                        <p><b>Already have an Account? <a class="aclk" href="{% url 'account:login' %}">Login</a></b></p><br>
+                                        <form class="form-wrapper" method="post">{% csrf_token %}
+                                        <input type="text" class="form-control" name="username" placeholder="Username"
+                                               minlength="5" maxlength="30" autocomplete="off" required>
+                                        <input type="email" class="form-control" name="email" placeholder="Email"
+                                               maxlength="30" autocomplete="off" required>
+                                        <input type="text" class="form-control" name="first_name"
+                                               placeholder="First Name" minlength="5" maxlength="30"
+                                               pattern='[A-Za-z]{1,32}' autocomplete="off" required>
+                                        <input type="text" class="form-control" name="last_name" placeholder="Last Name"
+                                               minlength="5" maxlength="30"
+                                               pattern='[A-Za-z]{1,32}' autocomplete="off" required>
+                                        <input type="password" class="form-control" name="password1"
+                                               placeholder="Password" maxlength="30"
+                                               required>
+                                        <input type="password" class="form-control" name="password2"
+                                               placeholder="confirm Password" maxlength="30"
+                                               required>
+                                        {% for message in messages %}
+                                            {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                                                <p style="color: red;">{{ message }}</p>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        <button type="submit" class="btn btn-primary">Register </button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- end page-wrapper -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+
+
+        <div class="dmtop">Scroll to Top</div>
+
+    </div><!-- end wrapper -->
+{% endblock content %}

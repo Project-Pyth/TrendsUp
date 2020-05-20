@@ -1,0 +1,27 @@
+{#Delete Post Template#}
+
+{% extends 'index.html' %}
+{% load static %}
+{% block nav %}
+{% endblock nav %}
+{% block search %}
+{% endblock search %}
+{% block content %}
+<style type="text/css">
+
+</style>
+    <div style="margin-top: 12%; margin-bottom: 8%;" class="container">
+        <div class="d-flex flex-lg-column">
+            <p class="m-auto" style="font-size: 30px">
+                {% if message %}
+                    {{ message }}
+                {% endif %}
+            </p><br>
+            <p class="m-auto">
+                <a href="{% url 'post:create' %}"><strong>Create Another Post</strong></a>
+            </p>
+        </div>
+    </div>
+
+
+{% endblock content %}

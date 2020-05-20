@@ -1,0 +1,123 @@
+{#User Profile View Template#}
+
+{% extends 'index.html' %}
+{% block logout %}
+    <div>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'account:logout' %}">Logout</a>
+        </li>
+    </div>
+    <div>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'account:change_password' %}">Change Password</a>
+        </li>
+    </div>
+    <div>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'account:delete' request.user.username %}"
+               onclick="return confirm('Are You Sure You Want To Delete Your Account')">Delete Account</a>
+        </li>
+    </div>
+{% endblock logout %}
+{% block search %}
+    <div>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'account:edit_profile' %}">Edit Profile</a>
+        </li>
+    </div>
+{% endblock search %}
+{% block content %}
+
+    <div id="wrapper">
+
+        <div class="page-title lb single-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <h2><i class="fa fa-star bg-orange"></i> Author by: {{ user.first_name }}</h2>
+                    </div><!-- end col -->
+                    <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'trendsup:index' %}">Home</a></li>
+                            <li class="breadcrumb-item active">{{ user.first_name }} {{ user.last_name }} </li>
+                        </ol>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end page-title -->
+
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="page-wrapper">
+                            <div class="custombox authorbox clearfix">
+                                <h4 class="small-title">About author</h4>
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                        <img src="{{ pro.image.url }}" alt="" class="img-fluid rounded-circle">
+                                    </div><!-- end col -->
+
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                        <h4><a href="#">{{ user.first_name }} {{ user.last_name }}</a></h4>
+                                        <p>{{ pro.description }}</p>
+
+
+                                    </div><!-- end col -->
+                                </div><!-- end row -->
+                            </div><!-- end author-box -->
+
+                            <hr class="invis1">
+
+                            <div class="blog-list clearfix">
+                                {% for post in posts %}
+                                    <div class="blog-box row">
+                                        <div class="col-md-4">
+                                            <div class="post-media">
+                                                <a href="{% url 'post:detail' post.slug %}" title="">
+                                                    <img src="{{ post.image.url }}" alt="" class="img-fluid">
+                                                    <div class="hovereffect"></div>
+                                                </a>
+                                            </div><!-- end media -->
+                                        </div><!-- end col -->
+
+                                        <div class="blog-meta big-meta col-md-8">
+                                            <h4><a href="{% url 'post:detail' post.slug %}"
+                                                   title="">{{ post.title }}</a></h4>
+                                            <p>{{ post.body|truncatechars:150|safe }}</p>
+                                            <small class="firstsmall"><a class="bg-orange"
+                                                                         href="{% url 'post:category' post.category.pk %}"
+                                                                         title="">{{ post.category }}</a></small>
+                                            <small><a href="#" title="">{{ post.date_posted }}</a></small>
+                                            <small><a href="#" title="">by {{ post.author }}</a></small>
+                                        </div><!-- end meta -->
+                                    </div><!-- end blog-box -->
+
+                                    <hr class="invis">
+                                {% endfor %}
+
+                            </div><!-- end blog-list -->
+                        </div><!-- end page-wrapper -->
+
+                        <hr class="invis">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                {% include 'snippets/pagination.html' with posts=posts %}
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+
+        <div class="dmtop">Scroll to Top</div>
+
+    </div><!-- end wrapper -->
+
+
+{% endblock content %}

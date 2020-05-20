@@ -1,0 +1,78 @@
+{% load static %}
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="widget">
+                    <div class="footer-text text-left">
+                        <a href="{% url 'trendsup:index' %}"><img
+                                src="{% static 'images/version/logo.png' %}" alt="" class="img-fluid"></a>
+                        <p>TrendsUp is a blog, sharing trending articles in certain fields.</p>
+{#                        <div class="social">#}
+{#                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i#}
+{#                                    class="fa fa-facebook"></i></a>#}
+{#                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i#}
+{#                                    class="fa fa-twitter"></i></a>#}
+{#                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Instagram"><i#}
+{#                                    class="fa fa-instagram"></i></a>#}
+{#                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Google Plus"><i#}
+{#                                    class="fa fa-google-plus"></i></a>#}
+{#                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i#}
+{#                                    class="fa fa-pinterest"></i></a>#}
+{#                        </div>#}
+
+                        <hr class="invis">
+
+
+                    </div><!-- end footer-text -->
+                </div><!-- end widget -->
+            </div><!-- end col -->
+
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <div class="widget">
+                    <h2 class="widget-title">Popular Categories</h2>
+                    <div class="link-widget">
+                        <ul>
+                            {% for keys, values in foot.items %}
+                                {% if forloop.counter <= 4 %}
+                                    <li><a href="#">{{ keys }}<span>({{ values }})</span></a></li>
+                                {% endif %}
+                            {% endfor %}
+
+                        </ul>
+                    </div><!-- end link-widget -->
+                </div><!-- end widget -->
+            </div><!-- end col -->
+
+            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <div class="widget">
+                    <h2 class="widget-title">Others</h2>
+                    <div class="link-widget">
+                        <ul>
+                            <li><a href="{% url 'trendsup:about' %}">About us</a></li>
+                            <li><a href="{% url 'trendsup:contact' %}">Contact us</a></li>
+                            <li><a href="{% url 'post:create' %}">Create Post</a></li>
+                            <li><a href="{% url 'account:view_profile' %}">Profile</a></li>
+
+
+
+                        </ul>
+                    </div><!-- end link-widget -->
+                </div><!-- end widget -->
+            </div><!-- end col -->
+        </div>
+
+
+    </div><!-- end container -->
+</footer><!-- end footer -->
+
+<div class="dmtop">Scroll to Top</div>
+
+</div><!-- end wrapper -->
+
+<!-- Core JavaScript
+================================================== -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/tether.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>

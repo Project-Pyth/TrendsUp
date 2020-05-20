@@ -1,0 +1,28 @@
+{% if posts %}
+{% for post in posts %}
+    <div class="blog-box row">
+        <div class="col-md-4">
+            <div class="post-media">
+                <a href="{% url 'post:detail' post.slug %}" title="">
+                    <img src="{{ post.image.url }}" alt="" class="img-fluid">
+                    <div class="hovereffect"></div>
+                </a>
+            </div><!-- end media -->
+        </div><!-- end col -->
+        <div class="blog-meta big-meta col-md-8">
+            <h4><a href="{% url 'post:detail' post.slug %}" title="">{{ post.title }}</a></h4>
+            <p>{{ post.body|safe|truncatechars:150 }}</p>
+            <small class="firstsmall"><a href="{% url 'post:category' post.category.pk %}" class="bg-orange" title="">{{ post.category }}</a></small>
+            <small><a href="{% url 'post:detail' post.slug %}" title="">{{ post.date_posted }}</a></small>
+            <small><a href="{% url 'post:author' post.author.pk %}" title="">by {{ post.author }}</a></small>
+        </div><!-- end meta -->
+    </div><!-- end blog-box -->
+    <hr class="invis">
+{% endfor %}
+{% else %}
+<div class="blog-box row">
+        <div class="blog-meta big-meta col-md-8">
+            <h5>There are no results matching your search: {{ query }}</h5>
+        </div><!-- end meta -->
+    </div><!-- end blog-box -->
+{% endif %}

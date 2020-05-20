@@ -1,0 +1,23 @@
+{#Login Required Template#}
+
+{% extends 'index.html' %}
+{% block nav %}
+{% endblock nav %}
+{% block search %}
+{% endblock search %}
+{% block content %}
+<style type="text/css">
+
+</style>
+    <div style="margin-top: 20%; margin-bottom: 8%;" class="container">
+        <div class="d-flex flex-lg-column">
+            <p class="m-auto" style="font-size: 30px">You must authenticate to view this page. </p><br>
+            <p class="m-auto">
+                <a href="{% url 'account:register' %}"><strong>Create an account</strong></a> or
+                <a href="{% url 'account:login' %}"><strong>login</strong></a>.
+            </p>
+        </div>
+    </div>
+
+
+{% endblock content %}

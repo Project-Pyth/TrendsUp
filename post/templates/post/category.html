@@ -1,0 +1,130 @@
+{#Category View Template#}
+
+{% extends 'index.html' %}
+{% block search %}
+{% endblock search %}
+{% block content %}
+<body>
+
+    <div id="wrapper">
+        <div class="page-title lb single-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <h2><i class="fa fa-gears bg-orange"></i>
+                            {% for head in heading %}
+                                    {{ head.name }}
+                                {% endfor %}
+                        </h2>
+                    </div><!-- end col -->
+                    <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">
+                                {% for head in heading %}
+                                    {{ head.name }}
+                                {% endfor %}
+                            </li>
+                        </ol>
+                    </div><!-- end col -->                    
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end page-title -->
+
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sidebar">
+                            <div class="widget">
+                                <div class="banner-spot clearfix">
+                                    <div class="banner-img">
+                                        <img src="upload/banner_07.jpg" alt="" class="img-fluid">
+                                    </div><!-- end banner-img -->
+                                </div><!-- end banner -->
+                            </div><!-- end widget -->
+
+
+
+                            <div class="widget">
+                                <h2 class="widget-title">Other Posts</h2>
+                                <div class="blog-list-widget">
+                                    <div class="list-group">
+                                        {% for i in pp %}
+                                        <a href="{% url 'post:detail' i.slug %}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="w-100 justify-content-between">
+                                                <img src="{{ i.image.url }}" alt="" class="img-fluid float-left">
+                                                <h5 class="mb-1">{{ i.title }}</h5>
+                                                <small>{{ i.date_posted}}</small>
+                                            </div>
+                                        </a>
+                                        {% endfor %}
+
+
+
+
+                                    </div>
+                                </div><!-- end blog-list -->
+                            </div><!-- end widget -->
+
+
+
+
+
+                            <div class="widget">
+                                <div class="banner-spot clearfix">
+                                    <div class="banner-img">
+                                        <img src="upload/banner_03.jpg" alt="" class="img-fluid">
+                                    </div><!-- end banner-img -->
+                                </div><!-- end banner -->
+                            </div><!-- end widget -->
+                        </div><!-- end sidebar -->
+                    </div><!-- end col -->
+                    
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="page-wrapper">
+                            <div class="blog-grid-system">
+                                <div class="row">
+                                    {% for post in posts %}
+                                    <div class="col-md-6">
+                                        <div class="blog-box">
+                                            <div class="post-media">
+                                                <a href="tech-single.html" title="">
+                                                    <img src="{{ post.image.url }}" alt="" class="img-fluid">
+                                                    <div class="hovereffect">
+                                                        <span></span>
+                                                    </div><!-- end hover -->
+                                                </a>
+                                            </div><!-- end media -->
+                                            <div class="blog-meta big-meta">
+                                                <span class="color-orange"><a href="{% url 'post:detail' post.slug %}" title="">{{ post.category }}</a></span>
+                                                <h4><a href="{% url 'post:detail' post.slug %}" title="">{{ post.title }}</a></h4>
+                                                <p>{{ post.body|truncatechars:100|safe}}</p>
+                                                <small><a href="#" title="">{{ post.date_posted }}</a></small>
+                                                <small><a href="{% url 'post:author' post.author.pk %}" title="">by, {{ post.author }}</a></small>
+                                            </div><!-- end meta -->
+                                        </div><!-- end blog-box -->
+                                    </div><!-- end col -->
+                                    {% endfor %}
+
+                                </div><!-- end row -->
+                            </div><!-- end blog-grid-system -->
+                        </div><!-- end page-wrapper -->
+
+                        <hr class="invis3">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                {% include 'snippets/pagination.html' with posts=posts %}
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+        <div class="dmtop">Scroll to Top</div>
+        
+    </div><!-- end wrapper -->
+</body>
+{% endblock content %}
