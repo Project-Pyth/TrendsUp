@@ -239,8 +239,39 @@ def approve(request, pk):
 
     if request.user.is_staff:
         if request.method == 'POST':
+            em = Post.objects.filter(pk=pk)
+            for i in em:
+                ema = i.author.email
             Post.objects.filter(pk=pk).update(status=True)
             context['message'] = 'Post is Successfully Approved and Will Be Displayed Soon on The Home Page. '
+            message = 'Post is Successfully Approved and Will Be Displayed Soon on The Home Page. '
+            mail_subject = 'TrendsUp Post Approved'
+            to_email = ema
+            email = EmailMessage(mail_subject, message, to=[to_email])
+            email.send()
+            return render(request, 'post/post_approved.html', context)
+
+
+# Post Rejection View
+@login_required(login_url='account:must_authenticate')
+def reject(request, pk):
+    context = {}
+
+    # Footer
+    context['foot'] = repeated.footer()
+
+    if request.user.is_staff:
+        if request.method == 'POST':
+            em = Post.objects.filter(pk=pk)
+            for i in em:
+                ema = i.author.email
+            Post.objects.filter(pk=pk).delete()
+            context['message'] = 'We Are Very Sorry. Your Post Has Been Rejected By TrendsUp Admin, Due to Some Query. Please Contact Us On Our Email For Any Query'
+            message = 'We Are Very Sorry. Your Post Has Been Rejected By TrendsUp Admin, Due to Some Query. Please Contact Us On Our Email For Any Query'
+            mail_subject = 'TrendsUp Post Rejected'
+            to_email = ema
+            email = EmailMessage(mail_subject, message, to=[to_email])
+            email.send()
             return render(request, 'post/post_approved.html', context)
 
 

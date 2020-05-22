@@ -6,6 +6,7 @@ app_name = 'post'
 urlpatterns = [
     path('pending/', views.pending, name='pending'),
     path('approve/<pk>', views.approve, name='approve'),
+    path('reject/<pk>', views.approve, name='reject'),
     path('postComment/', views.postComment, name='postComment'),
     path('create/', views.create_post, name='create'),
     path('<slug>/', views.detail_view, name='detail'),
