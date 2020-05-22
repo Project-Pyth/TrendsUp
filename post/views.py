@@ -1,4 +1,6 @@
 import datetime
+
+from django.core.mail import EmailMessage
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from mysite import repeated
@@ -125,7 +127,6 @@ def delete_post(request, slug):
     Post.objects.get(slug=slug).delete()
     context['message'] = 'Your Post Has Been Deleted Successfully.'
     return render(request, 'post/del_post.html', context)
-
 
 
 # Posting Comments View
