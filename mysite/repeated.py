@@ -5,6 +5,7 @@ import urllib
 import operator
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from requests import HTTPError
 
 from post.models import Category, Post
 
@@ -31,13 +32,15 @@ def api(context):
         'sports',
 
     )
-
-    for i in cat:
-        with urllib.request.urlopen(
-                "http://newsapi.org/v2/top-headlines?country=in&category=" + str(
-                    i) + "&pageSize=4&apiKey=e7d1b2d281964be6a4a42dd6935aee20") as url:
-            document = json.loads(url.read().decode())
-            context[i] = document['articles']
+    try:
+        for i in cat:
+            with urllib.request.urlopen(
+                    "http://newsapi.org/v2/top-headlines?country=in&category=" + str(
+                        i) + "&pageSize=4&apiKey=e7d1b2d281964be6a4a42dd6935aee20") as url:
+                document = json.loads(url.read().decode())
+                context[i] = document['articles']
+    except HTTPError:
+        context['timeout'] = 'Time Out'
     return context
 
 

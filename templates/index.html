@@ -70,153 +70,157 @@
                             <a class="nav-link" href="{% url 'trendsup:index' %}">Home</a>
                         </li>
                         {% block nav %}
-                            <li class="nav-item dropdown has-submenu menu-large hidden-md-down hidden-sm-down hidden-xs-down">
-                                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">News</a>
-                                <ul class="dropdown-menu megamenu" aria-labelledby="dropdown01">
-                                    <li>
-                                        <div class="container">
-                                            <div class="mega-menu-content clearfix">
-                                                <div class="tab">
-                                                    <button class="tablinks active"
-                                                            onclick="openCategory(event, 'cat01')">Science
-                                                    </button>
-                                                    <button class="tablinks" onclick="openCategory(event, 'cat02')">
-                                                        Technology
-                                                    </button>
-                                                    <button class="tablinks" onclick="openCategory(event, 'cat03')">
-                                                        Business
-                                                    </button>
-                                                    <button class="tablinks" onclick="openCategory(event, 'cat04')">
-                                                        Entertainment
-                                                    </button>
-                                                    <button class="tablinks" onclick="openCategory(event, 'cat05')">
-                                                        Sports
-                                                    </button>
-                                                </div>
+                            {% if timeout %}
 
-                                                <div class="tab-details clearfix">
-                                                    <div id="cat01" class="tabcontent active">
-                                                        <div class="row">
-                                                            {% for i in science %}
-                                                                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                                                                    <div class="blog-box">
-                                                                        <div class="post-media">
-                                                                            <a href="{{ i.url }}" title="">
-                                                                                <img src="{{ i.urlToImage }}" alt=""
-                                                                                     class="img-fluid">
-                                                                                <div class="hovereffect">
-                                                                                </div><!-- end hover -->
-                                                                                <span class="menucat">Science</span>
-                                                                            </a>
-                                                                        </div><!-- end media -->
-                                                                        <div class="blog-meta">
-                                                                            <h4><a href="{{ i.url }}"
-                                                                                   title="">{{ i.title }}</a></h4>
-                                                                        </div><!-- end meta -->
-                                                                    </div><!-- end blog-box -->
-                                                                </div>
-                                                            {% endfor %}
+                            {% else %}
+                                <li class="nav-item dropdown has-submenu menu-large hidden-md-down hidden-sm-down hidden-xs-down">
+                                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
+                                       aria-haspopup="true" aria-expanded="false">News</a>
+                                    <ul class="dropdown-menu megamenu" aria-labelledby="dropdown01">
+                                        <li>
+                                            <div class="container">
+                                                <div class="mega-menu-content clearfix">
+                                                    <div class="tab">
+                                                        <button class="tablinks active"
+                                                                onclick="openCategory(event, 'cat01')">Science
+                                                        </button>
+                                                        <button class="tablinks" onclick="openCategory(event, 'cat02')">
+                                                            Technology
+                                                        </button>
+                                                        <button class="tablinks" onclick="openCategory(event, 'cat03')">
+                                                            Business
+                                                        </button>
+                                                        <button class="tablinks" onclick="openCategory(event, 'cat04')">
+                                                            Entertainment
+                                                        </button>
+                                                        <button class="tablinks" onclick="openCategory(event, 'cat05')">
+                                                            Sports
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="tab-details clearfix">
+                                                        <div id="cat01" class="tabcontent active">
+                                                            <div class="row">
+                                                                {% for i in science %}
+                                                                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                                                                        <div class="blog-box">
+                                                                            <div class="post-media">
+                                                                                <a href="{{ i.url }}" title="">
+                                                                                    <img src="{{ i.urlToImage }}" alt=""
+                                                                                         class="img-fluid">
+                                                                                    <div class="hovereffect">
+                                                                                    </div><!-- end hover -->
+                                                                                    <span class="menucat">Science</span>
+                                                                                </a>
+                                                                            </div><!-- end media -->
+                                                                            <div class="blog-meta">
+                                                                                <h4><a href="{{ i.url }}"
+                                                                                       title="">{{ i.title }}</a></h4>
+                                                                            </div><!-- end meta -->
+                                                                        </div><!-- end blog-box -->
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div id="cat02" class="tabcontent">
-                                                        <div class="row">
-                                                            {% for i in technology %}
-                                                                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                                                                    <div class="blog-box">
-                                                                        <div class="post-media">
-                                                                            <a href="{{ i.url }}" title="">
-                                                                                <img src="{{ i.urlToImage }}" alt=""
-                                                                                     class="img-fluid">
-                                                                                <div class="hovereffect">
-                                                                                </div><!-- end hover -->
-                                                                                <span class="menucat">Technology</span>
-                                                                            </a>
-                                                                        </div><!-- end media -->
-                                                                        <div class="blog-meta">
-                                                                            <h4><a href="{{ i.url }}"
-                                                                                   title="">{{ i.title }}</a></h4>
-                                                                        </div><!-- end meta -->
-                                                                    </div><!-- end blog-box -->
-                                                                </div>
-                                                            {% endfor %}
-                                                        </div><!-- end row -->
-                                                    </div>
-                                                    <div id="cat03" class="tabcontent">
-                                                        <div class="row">
-                                                            {% for i in business %}
-                                                                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                                                                    <div class="blog-box">
-                                                                        <div class="post-media">
-                                                                            <a href="{{ i.url }}" title="">
-                                                                                <img src="{{ i.urlToImage }}" alt=""
-                                                                                     class="img-fluid">
-                                                                                <div class="hovereffect">
-                                                                                </div><!-- end hover -->
-                                                                                <span class="menucat">Business</span>
-                                                                            </a>
-                                                                        </div><!-- end media -->
-                                                                        <div class="blog-meta">
-                                                                            <h4><a href="{{ i.url }}"
-                                                                                   title="">{{ i.title }}</a></h4>
-                                                                        </div><!-- end meta -->
-                                                                    </div><!-- end blog-box -->
-                                                                </div>
-                                                            {% endfor %}
-                                                        </div><!-- end row -->
-                                                    </div>
-                                                    <div id="cat04" class="tabcontent">
-                                                        <div class="row">
-                                                            {% for i in entertainment %}
-                                                                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                                                                    <div class="blog-box">
-                                                                        <div class="post-media">
-                                                                            <a href="{{ i.url }}" title="">
-                                                                                <img src="{{ i.urlToImage }}" alt=""
-                                                                                     class="img-fluid">
-                                                                                <div class="hovereffect">
-                                                                                </div><!-- end hover -->
-                                                                                <span class="menucat">Entertainment</span>
-                                                                            </a>
-                                                                        </div><!-- end media -->
-                                                                        <div class="blog-meta">
-                                                                            <h4><a href="{{ i.url }}"
-                                                                                   title="">{{ i.title }}</a></h4>
-                                                                        </div><!-- end meta -->
-                                                                    </div><!-- end blog-box -->
-                                                                </div>
-                                                            {% endfor %}
-                                                        </div><!-- end row -->
-                                                    </div>
-                                                    <div id="cat05" class="tabcontent">
-                                                        <div class="row">
-                                                            {% for i in sports %}
-                                                                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                                                                    <div class="blog-box">
-                                                                        <div class="post-media">
-                                                                            <a href="{{ i.url }}" title="">
-                                                                                <img src="{{ i.urlToImage }}" alt=""
-                                                                                     class="img-fluid">
-                                                                                <div class="hovereffect">
-                                                                                </div><!-- end hover -->
-                                                                                <span class="menucat">Sports</span>
-                                                                            </a>
-                                                                        </div><!-- end media -->
-                                                                        <div class="blog-meta">
-                                                                            <h4><a href="{{ i.url }}"
-                                                                                   title="">{{ i.title }}</a></h4>
-                                                                        </div><!-- end meta -->
-                                                                    </div><!-- end blog-box -->
-                                                                </div>
-                                                            {% endfor %}
-                                                        </div><!-- end row -->
-                                                    </div>
-                                                </div><!-- end tab-details -->
-                                            </div><!-- end mega-menu-content -->
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
+                                                        <div id="cat02" class="tabcontent">
+                                                            <div class="row">
+                                                                {% for i in technology %}
+                                                                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                                                                        <div class="blog-box">
+                                                                            <div class="post-media">
+                                                                                <a href="{{ i.url }}" title="">
+                                                                                    <img src="{{ i.urlToImage }}" alt=""
+                                                                                         class="img-fluid">
+                                                                                    <div class="hovereffect">
+                                                                                    </div><!-- end hover -->
+                                                                                    <span class="menucat">Technology</span>
+                                                                                </a>
+                                                                            </div><!-- end media -->
+                                                                            <div class="blog-meta">
+                                                                                <h4><a href="{{ i.url }}"
+                                                                                       title="">{{ i.title }}</a></h4>
+                                                                            </div><!-- end meta -->
+                                                                        </div><!-- end blog-box -->
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div><!-- end row -->
+                                                        </div>
+                                                        <div id="cat03" class="tabcontent">
+                                                            <div class="row">
+                                                                {% for i in business %}
+                                                                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                                                                        <div class="blog-box">
+                                                                            <div class="post-media">
+                                                                                <a href="{{ i.url }}" title="">
+                                                                                    <img src="{{ i.urlToImage }}" alt=""
+                                                                                         class="img-fluid">
+                                                                                    <div class="hovereffect">
+                                                                                    </div><!-- end hover -->
+                                                                                    <span class="menucat">Business</span>
+                                                                                </a>
+                                                                            </div><!-- end media -->
+                                                                            <div class="blog-meta">
+                                                                                <h4><a href="{{ i.url }}"
+                                                                                       title="">{{ i.title }}</a></h4>
+                                                                            </div><!-- end meta -->
+                                                                        </div><!-- end blog-box -->
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div><!-- end row -->
+                                                        </div>
+                                                        <div id="cat04" class="tabcontent">
+                                                            <div class="row">
+                                                                {% for i in entertainment %}
+                                                                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                                                                        <div class="blog-box">
+                                                                            <div class="post-media">
+                                                                                <a href="{{ i.url }}" title="">
+                                                                                    <img src="{{ i.urlToImage }}" alt=""
+                                                                                         class="img-fluid">
+                                                                                    <div class="hovereffect">
+                                                                                    </div><!-- end hover -->
+                                                                                    <span class="menucat">Entertainment</span>
+                                                                                </a>
+                                                                            </div><!-- end media -->
+                                                                            <div class="blog-meta">
+                                                                                <h4><a href="{{ i.url }}"
+                                                                                       title="">{{ i.title }}</a></h4>
+                                                                            </div><!-- end meta -->
+                                                                        </div><!-- end blog-box -->
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div><!-- end row -->
+                                                        </div>
+                                                        <div id="cat05" class="tabcontent">
+                                                            <div class="row">
+                                                                {% for i in sports %}
+                                                                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                                                                        <div class="blog-box">
+                                                                            <div class="post-media">
+                                                                                <a href="{{ i.url }}" title="">
+                                                                                    <img src="{{ i.urlToImage }}" alt=""
+                                                                                         class="img-fluid">
+                                                                                    <div class="hovereffect">
+                                                                                    </div><!-- end hover -->
+                                                                                    <span class="menucat">Sports</span>
+                                                                                </a>
+                                                                            </div><!-- end media -->
+                                                                            <div class="blog-meta">
+                                                                                <h4><a href="{{ i.url }}"
+                                                                                       title="">{{ i.title }}</a></h4>
+                                                                            </div><!-- end meta -->
+                                                                        </div><!-- end blog-box -->
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div><!-- end row -->
+                                                        </div>
+                                                    </div><!-- end tab-details -->
+                                                </div><!-- end mega-menu-content -->
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% endif %}
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Categories</a>
                                 <div class="dropdown-menu">
@@ -241,10 +245,10 @@
                                        href="{% url 'account:view_profile' %}">{{ request.user.username }}</a>
                                 </li>
                                 {% if request.user.is_staff %}
-                                <li class="nav-item">
-                                    <a class="nav-link"
-                                       href="{% url 'post:pending' %}">Pending Posts</a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"
+                                           href="{% url 'post:pending' %}">Pending Posts</a>
+                                    </li>
                                 {% endif %}
                             {% endblock logout %}
                         {% else %}
@@ -293,7 +297,7 @@
                                         <div class="blog-meta">
                                             <span class="bg-orange"><a href="{% url 'post:category' i.category.pk %}"
                                                                        title="">{{ i.category }}</a></span>
-                                            <h6><a href="{% url 'post:detail' i.slug %}" title="">{{ i.title|truncatechars:50|safe }}</a></h6>
+                                            <h6><a href="{% url 'post:detail' i.slug %}" title="">{{ i.title }}</a></h6>
                                             <small><a href="#" title="">{{ i.date_posted }}</a></small>
                                             <small><a href="{% url 'post:author' i.author.pk %}"
                                                       title="">by, {{ i.author }}</a></small>
@@ -312,7 +316,7 @@
                                         <div class="blog-meta">
                                             <span class="bg-orange"><a href="{% url 'post:category' i.category.pk %}"
                                                                        title="">{{ i.category }}</a></span>
-                                            <h6><a href="{% url 'post:detail' i.slug %}" title="">{{ i.title|truncatechars:50|safe }}</a></h6>
+                                            <h6><a href="{% url 'post:detail' i.slug %}" title="">{{ i.title }}</a></h6>
                                             <small><a href="#" title="">{{ i.date_posted }}</a></small>
                                             <small><a href="{% url 'post:author' i.author.pk %}"
                                                       title="">by, {{ i.author }}</a></small>
@@ -332,7 +336,7 @@
                                         <div class="blog-meta">
                                         <span class="bg-orange"><a href="{% url 'post:category' i.category.pk %}"
                                                                    title="">{{ i.category }}</a></span>
-                                            <h6><a href="{% url 'post:detail' i.slug %}" title="">{{ i.title|truncatechars:50|safe }}</a></h6>
+                                            <h6><a href="{% url 'post:detail' i.slug %}" title="">{{ i.title }}</a></h6>
                                             <small><a href="#" title="">{{ i.date_posted }}</a></small>
                                             <small><a href="{% url 'post:author' i.author.pk %}"
                                                       title="">by, {{ i.author }}</a></small>
@@ -352,7 +356,7 @@
                                         <div class="blog-meta">
                                             <span class="bg-orange"><a href="{% url 'post:category' i.category.pk %}"
                                                                        title="">{{ i.category }}</a></span>
-                                            <h6><a href="{% url 'post:detail' i.slug %}" title="">{{ i.title|truncatechars:50|safe }}</a></h6>
+                                            <h6><a href="{% url 'post:detail' i.slug %}" title="">{{ i.title }}</a></h6>
                                             <small><a href="#" title="">{{ i.date_posted }}</a></small>
                                             <small><a href="{% url 'post:author' i.author.pk %}"
                                                       title="">by, {{ i.author }}</a></small>
