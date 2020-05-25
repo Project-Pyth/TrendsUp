@@ -9,9 +9,10 @@
 {% block reset %}{% endblock reset %}
 {% block content %}
     <style>
-    body{
-        background: #edeff2;
-    }
+        body {
+            background: #edeff2;
+        }
+
         .a {
             height: 100%;
         }
@@ -246,12 +247,19 @@
         }
     </style>
 
-<body>
+    <body>
 
     <div class="a">
         <div class='b'>
             <form class="form" method="post" enctype="multipart/form-data" autocomplete="off">
                 {% csrf_token %}
+
+                {% for message in messages %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                        <span style="color: red;">{{ message }}</span>
+                    {% endif %}
+                {% endfor %}
+
                 <h2>User Profile</h2>
                 <div class="form-group">
                     <label for="email">Email:</label>
@@ -318,7 +326,7 @@
 
         </div>
     </div>
-</body>
+    </body>
     <script>
         $(function () {
 

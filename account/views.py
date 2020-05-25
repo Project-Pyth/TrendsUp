@@ -120,7 +120,7 @@ def edit_profile(request):
     context['foot'] = repeated.footer()
     if request.method == 'POST':
         user_form = EditProfileForm(request.POST, instance=request.user)
-        profile_form = PersonalEditForm(request.POST, request.FILES or None, instance=request.user.userprofile)
+        profile_form = PersonalEditForm(request.POST or None, request.FILES or None, instance=request.user.userprofile)
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
@@ -128,6 +128,7 @@ def edit_profile(request):
             return redirect('account:view_profile')
         else:
             messages.error(request, 'Please fill in the correct Details.')
+            return redirect('account:edit_profile')
     else:
         user_form = EditProfileForm(instance=request.user)
         profile_form = PersonalEditForm(instance=request.user.userprofile)
