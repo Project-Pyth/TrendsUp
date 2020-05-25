@@ -32,6 +32,7 @@
                             <hr class="invis1">
 
                             <div class="blog-list clearfix">
+                            {% if posts %}
                                 {% for post in posts %}
                                     <div class="blog-box row">
                                         <div class="col-md-4">
@@ -64,7 +65,13 @@
                                     </form>
                                     <hr class="invis">
                                 {% endfor %}
-
+                                {% else %}
+                                <div style="margin-top: 12%; margin-bottom: 8%;" class="container">
+        <div class="d-flex flex-lg-column">
+            <h1 style="font-size: 30px; margin-left: 40%">There Are No Pending Posts.....</h1>
+        </div>
+    </div>
+{% endif %}
                             </div><!-- end blog-list -->
                         </div><!-- end page-wrapper -->
 
