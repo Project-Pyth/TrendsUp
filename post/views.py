@@ -1,12 +1,11 @@
 import datetime
-
-from django.core.mail import EmailMessage
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from mysite import repeated
 from post.models import Post, Category, PostComment
 from post.forms import CreatePostForm, UpdatePostForm
 from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 from django.contrib.auth.decorators import login_required
 from post.templatetags import extras
 
@@ -129,6 +128,7 @@ def delete_post(request, slug):
     return render(request, 'post/del_post.html', context)
 
 
+
 # Posting Comments View
 @login_required(login_url='account:must_authenticate')
 def postComment(request):
@@ -193,7 +193,7 @@ def author(request, pk=None):
     # Footer
     context['foot'] = repeated.footer()
     if request.method == 'GET':
-        post = Post.objects.all().filter(author=pk, status=True)
+        post = Post.objects.all().filter(author=pk, status=True).order_by('-date_posted')
         author_name = User.objects.get(pk=pk)
         context['author_name'] = author_name
         # Pagination
@@ -225,7 +225,7 @@ def pending(request):
 
     if request.user.is_staff:
         if request.method == 'GET':
-            posts = Post.objects.filter(status=False)
+            posts = Post.objects.filter(status=False).order_by('-date_posted')
             context['posts'] = posts
             return render(request, 'post/pending.html', context)
 
