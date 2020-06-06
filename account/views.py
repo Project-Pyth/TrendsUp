@@ -19,6 +19,8 @@ from post.models import Post
 
 # User Registration View
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('trendsup:index')
     context = {}
 
     #footer
@@ -177,6 +179,8 @@ def change_password(request):
 
 # User Login View
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('trendsup:index')
     context = {}
     # Footer
     context['foot'] = repeated.footer()
