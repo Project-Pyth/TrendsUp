@@ -1,4 +1,4 @@
-1. Run the "python manage.py collectstatic" command first
+1. Create "assets" folder in the base directory and run the "python manage.py collectstatic" command.
 
 
 2. Provide your "Email-Id" along with the "Password" in settings.py file for reset password functionality.
